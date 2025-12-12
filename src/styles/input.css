@@ -1,0 +1,226 @@
+/* -----------------------------------
+   ✅ Font Imports (load first)
+----------------------------------- */
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SFPRODISPLAYREGULAR.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SFPRODISPLAYMEDIUM.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SFPRODISPLAYBOLD.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* -----------------------------------
+   ✅ Tailwind Imports (v3 compatible)
+----------------------------------- */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* -----------------------------------
+   ✅ Base Layer
+----------------------------------- */
+@layer base {
+  html {
+    font-family: 'SF Pro Display', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont;
+    font-weight: 400;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  * {
+    @apply border-border outline-ring;
+  }
+}
+
+/* -----------------------------------
+   ✅ Color Variables
+----------------------------------- */
+:root {
+  --foreground: oklch(0.9 0 0); /* #EFEFEF */
+  --background: oklch(0.15 0 0); /* #0b0b0b */
+
+  --primary: oklch(0.6526 0.2332 34.19); /* #FE3E01 */
+  --primary-foreground: oklch(0.9 0 0);
+
+  --secondary: oklch(0.7444 0 0); /* #ACACAC */
+  --secondary-foreground: oklch(0 0 0);
+
+  --accent: oklch(0.8374 0.1715 83.89); /* #FEBE03 */
+  --accent-foreground: oklch(0 0 0);
+
+  --muted: oklch(0.2 0 0); /* #202020 */
+  --muted-foreground: oklch(30.118% 0.00003 271.152);
+
+  --card: var(--background);
+  --card-foreground: var(--foreground);
+
+  --popover: var(--background);
+  --popover-foreground: var(--foreground);
+
+  --destructive: oklch(0.577 0.245 27.325);
+
+  --border: oklch(0.25 0 0);
+  --input: var(--border);
+  --ring: oklch(0.3 0 0);
+
+  --chart-1: var(--primary);
+  --chart-2: var(--secondary);
+  --chart-3: var(--muted);
+  --chart-4: var(--accent);
+  --chart-5: var(--foreground);
+
+  --radius: 0.625rem;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* -----------------------------------
+   ✅ Global Styling
+----------------------------------- */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'SF Pro Display', ui-sans-serif, system-ui;
+  font-weight: 400;
+}
+
+/* -----------------------------------
+   ✅ Custom Components
+----------------------------------- */
+@layer components {
+  .scrollbar-thin::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-slate-100 dark:bg-slate-900;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-slate-400 dark:bg-slate-700 rounded hover:bg-slate-500;
+  }
+
+  .chat-message {
+    @apply mb-4 animate-fade-in;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-in-out;
+  }
+
+  @keyframes toast-enter {
+    from {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes toast-exit {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+  }
+  
+  .animate-toast-enter {
+    animation: toast-enter 0.3s ease-out forwards;
+    will-change: transform, opacity;
+  }
+  
+  .animate-toast-exit {
+    animation: toast-exit 0.3s ease-out forwards;
+    will-change: transform, opacity;
+  }
+}
+
+/* -----------------------------------
+   ✅ Utilities
+----------------------------------- */
+.img-hor {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+}
+
+::selection {
+  background-color: var(--foreground);
+  color: #000;
+}
+
+.button-grad {
+  background: linear-gradient(45deg, #fe3e01 15%, #febe03);
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE 10+ */
+  scrollbar-width: none; /* Firefox, Safari 18.2+, Chromium 121+ */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Older Safari and Chromium */
+}
+
+@keyframes meteor {
+  0% {
+    transform: rotate(215deg) translateX(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(215deg) translateX(-500px);
+    opacity: 0;
+  }
+}
+
+/* Electron Window Drag Region */
+.drag-region {
+  -webkit-app-region: drag;
+}
+
+.no-drag {
+  -webkit-app-region: no-drag;
+}
