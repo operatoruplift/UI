@@ -1,5 +1,6 @@
-const { BrowserWindow, screen: electronScreen } = require("electron");
+const { BrowserWindow, screen: electronScreen, app, nativeImage } = require("electron");
 const path = require("path");
+const fs = require("fs");
 
 let mainWindow: any = null;
 let isQuitting = false;
@@ -9,6 +10,37 @@ export const setIsQuitting = (value: boolean) => {
 };
 
 export const getIsQuitting = () => isQuitting;
+
+// Get the app icon path
+const getIconPath = () => {
+  const iconName = process.platform === 'win32' ? 'logo.ico' : 'logo.png';
+  const iconPaths = [
+    path.join(__dirname, "..", "..", "assets", "images", "logo", iconName),
+    path.join(__dirname, "assets", "images", "logo", iconName),
+    path.join(app.getAppPath(), "assets", "images", "logo", iconName),
+  ];
+  
+  for (const iconPath of iconPaths) {
+    if (fs.existsSync(iconPath)) {
+      return iconPath;
+    }
+  }
+  
+  // Fallback to ico if png not found
+  const fallbackPaths = [
+    path.join(__dirname, "..", "..", "assets", "images", "logo", "logo.ico"),
+    path.join(__dirname, "assets", "images", "logo", "logo.ico"),
+    path.join(app.getAppPath(), "assets", "images", "logo", "logo.ico"),
+  ];
+  
+  for (const iconPath of fallbackPaths) {
+    if (fs.existsSync(iconPath)) {
+      return iconPath;
+    }
+  }
+  
+  return null;
+};
 
 export const createWindow = (preloadPath: string, htmlPath: string) => {
   if (mainWindow) {
@@ -20,6 +52,9 @@ export const createWindow = (preloadPath: string, htmlPath: string) => {
   // Get the primary display's dimensions
   const primaryDisplay = electronScreen.getPrimaryDisplay();
   const { width, height } = primaryDisplay.workAreaSize;
+  
+  // Get icon path
+  const iconPath = getIconPath();
 
   mainWindow = new BrowserWindow({
     width: width * 0.75,
@@ -28,6 +63,7 @@ export const createWindow = (preloadPath: string, htmlPath: string) => {
     minHeight: 400,
     frame: false,
     show: false, // Don't show until ready
+    icon: iconPath || undefined,
     webPreferences: {
       preload: preloadPath,
       contextIsolation: true,

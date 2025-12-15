@@ -81,6 +81,19 @@
         ]
       }
     ],
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "icon": "assets/images/logo/logo.icns",
+      "category": "public.app-category.productivity"
+    },
     "win": {
       "target": [
         {
@@ -97,6 +110,13 @@
         }
       ],
       "icon": "assets/images/logo/logo.ico"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "icon": "assets/images/logo/logo.png"
     },
     "nsis": {
       "oneClick": false,

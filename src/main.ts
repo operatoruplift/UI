@@ -1,9 +1,33 @@
 import { registerAuthStorage } from "./services/electron-services/icpStorage";
 
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, nativeImage } = require("electron");
 const path = require("path");
 const fs = require("fs");
 require('./services/electron-services/ipcLoadEnvService').loadEnv();
+
+// Set dock icon for macOS
+if (process.platform === 'darwin' && app.dock) {
+  const iconPaths = [
+    path.join(__dirname, "..", "assets", "images", "logo", "logo.png"),
+    path.join(__dirname, "assets", "images", "logo", "logo.png"),
+    path.join(__dirname, "..", "assets", "images", "logo", "logo.ico"),
+    path.join(__dirname, "assets", "images", "logo", "logo.ico"),
+  ];
+  
+  for (const iconPath of iconPaths) {
+    if (fs.existsSync(iconPath)) {
+      try {
+        const icon = nativeImage.createFromPath(iconPath);
+        if (!icon.isEmpty()) {
+          app.dock.setIcon(icon);
+        }
+      } catch (e) {
+        console.warn('Failed to set dock icon:', e);
+      }
+      break;
+    }
+  }
+}
 // Import services
 const {
   createTray,
