@@ -215,7 +215,7 @@ export const DevicesSection: React.FC = () => {
     }
   }
 
-  const currentDeviceId = typeof window !== 'undefined' ? localStorage.getItem('aven_device_id') : null
+  const currentDeviceId = typeof window !== 'undefined' ? localStorage.getItem('uplift_device_id') : null
 
   if (!isAuthenticated) {
     return (
