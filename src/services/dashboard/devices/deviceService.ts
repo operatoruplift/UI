@@ -151,7 +151,7 @@ export const deleteDevice = async (deviceId: string): Promise<void> => {
  * Get or throw device ID from localStorage
  */
 export const getOrCreateDeviceId = (): string => {
-  const STORAGE_KEY = 'aven_device_id';
+  const STORAGE_KEY = 'uplift_device_id';
   var deviceId = localStorage.getItem(STORAGE_KEY);
   if (!deviceId) {
     // Generate a unique device ID
