@@ -26,7 +26,7 @@ export const useDeviceStore = create<DeviceState>((set) => ({
       const devices = await getUserDevices();
       
       // Find current device by matching device_id from localStorage
-      const currentDeviceId = localStorage.getItem('aven_device_id');
+      const currentDeviceId = localStorage.getItem('uplift_device_id');
       const current = devices.find(d => d.device_id === currentDeviceId) || null;
       
       set({ devices, currentDevice: current, isLoading: false });
