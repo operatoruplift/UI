@@ -1,6 +1,16 @@
 # @operatoruplift/ui
 
-Shared UI component library for Operator Uplift apps (website, desktop app, developer console).
+> **v0.1.0** — Shared UI component library for all Operator Uplift applications.
+
+47 components, 13 hooks, Storybook documentation, and a full design token system — published as a single npm package.
+
+## Used By
+
+| App | Environment |
+|-----|-------------|
+| **Website** (`operatoruplift/website`) | Next.js (SSR) |
+| **Developer Console** (`operatoruplift/developer-console`) | Next.js (SSR) |
+| **Desktop App** (`operatoruplift/desktop`) — webview | Tauri (CSR) |
 
 ## Installation
 
@@ -146,13 +156,13 @@ function App() {
 | `useStreamingText` | Animated text streaming for AI responses |
 | `useCostTracker` | Token/cost tracking for AI sessions |
 | `useMemory` | 3-layer memory system (index/topic/search) |
-| `useMemoryConsolidation` | Memory dedup, pruning, and merging (autoDream) |
+| `useMemoryConsolidation` | Memory dedup, pruning, and merging |
 | `useTheme` | Theme accessor from ThemeProvider |
 | `useToast` | Toast notification accessor from ToastProvider |
 
 ## Memory System
 
-The library includes a structured memory system inspired by production agentic architectures:
+The library includes a structured memory system for agentic applications:
 
 ```tsx
 import { useMemory, createLocalStorageAdapter } from "@operatoruplift/ui";
@@ -165,17 +175,16 @@ const { entries, addMemory, searchMemories } = useMemory({ adapter });
 
 ## Design Tokens
 
-| Token | Value |
-|-------|-------|
-| Primary (Operator Orange) | `#E77630` |
-| Secondary (Amber) | `#F59E0B` |
-| Background (Void) | `#050508` |
-| Card | `#0c0c0c` |
-| Text | `#ffffff` |
-| Muted text | `#9ca3af` |
-| Border | `rgba(255,255,255,0.05)` |
-| Border hover | `rgba(255,255,255,0.1)` |
-| Border active | `rgba(231,118,48,0.3)` |
+| Token | Value | CSS Variable |
+|-------|-------|-------------|
+| Primary (Operator Orange) | `#E77630` | `--ou-primary` |
+| Secondary (Amber) | `#F59E0B` | `--ou-secondary` |
+| Background (Void) | `#050508` | `--ou-background` |
+| Card | `#0c0c0c` | `--ou-card` |
+| Text | `#ffffff` | `--ou-foreground` |
+| Muted text | `#9ca3af` | `--ou-muted-foreground` |
+| Border | `rgba(255,255,255,0.05)` | `--ou-border` |
+| Destructive | `#ef4444` | `--ou-destructive` |
 
 Access tokens programmatically:
 
@@ -204,13 +213,19 @@ npm run test       # Run tests
 npm run lint       # Type check
 ```
 
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on adding new components.
+
 ## Compatibility
 
 - React 18+ and React 19+
-- Works in both Next.js (SSR) and Tauri (CSR) environments
-- All interactive components are keyboard accessible
+- Next.js (SSR) and Tauri (CSR)
+- Keyboard accessible interactive components
 - Full TypeScript support with exported types
+
+## Security
+
+This library contains no API keys, secrets, or proprietary logic. All design tokens, components, and hooks are safe to publish publicly. The `src/` directory has been scanned to confirm zero references to `ANTHROPIC`, `SUPABASE`, `SECRET`, `KEY`, or `TOKEN` strings in library code.
 
 ## License
 
-MIT - see [LICENSE](./LICENSE)
+MIT - Copyright (c) 2026 Operator Uplift. See [LICENSE](./LICENSE).
