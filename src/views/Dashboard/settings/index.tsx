@@ -8,7 +8,9 @@ import {
   DevicesSection,
   SubscriptionSection,
   UsageSection,
-  ActionsSection
+  ActionsSection,
+  KeysSection,
+  PermissionsSection,
 } from './sections'
 
 const sectionComponents: Record<string, React.ComponentType> = {
@@ -19,7 +21,9 @@ const sectionComponents: Record<string, React.ComponentType> = {
   devices: DevicesSection,
   subscription: SubscriptionSection,
   usage: UsageSection,
-  actions: ActionsSection
+  actions: ActionsSection,
+  keys: KeysSection,
+  permissions: PermissionsSection,
 }
 
 export function Profile() {

@@ -8,4 +8,6 @@ export { FileListModal } from './FileListModal'
 export { StreamingMessage } from './StreamingMessage'
 export { ThinkingIndicator } from './ThinkingIndicator'
 export { EmptyState } from './EmptyState'
+export { ApprovalModal } from './ApprovalModal'
+export { ModelSelector } from './ModelSelector'
 

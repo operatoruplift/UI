@@ -6,4 +6,6 @@ export { DevicesSection } from './DevicesSection'
 export { SubscriptionSection } from './SubscriptionSection'
 export { UsageSection } from './UsageSection'
 export { ActionsSection } from './ActionsSection'
+export { KeysSection } from './KeysSection'
+export { PermissionsSection } from './PermissionsSection'
 

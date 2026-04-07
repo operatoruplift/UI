@@ -1,6 +1,6 @@
 import React from 'react'
 import { BackgroundBeams } from '@/components/ui/background-beams'
-import { SendInput, MessageList } from './components'
+import { SendInput, MessageList, ApprovalModal } from './components'
 
 export function Chat() {
   return (
@@ -13,6 +13,7 @@ export function Chat() {
       {/* Content */}
       <div className="relative z-10 flex flex-col flex-1 min-h-0 py-4">
         <MessageList />
+        <ApprovalModal />
         <SendInput />
       </div>
     </div>

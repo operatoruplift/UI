@@ -54,20 +54,24 @@
    ✅ Color Variables
 ----------------------------------- */
 :root {
-  --foreground: oklch(0.9 0 0); /* #EFEFEF */
-  --background: oklch(0.15 0 0); /* #0b0b0b */
+  /* Aligned to operatoruplift.com brand palette.
+     Source: website repo app/globals.css + src/sections/*.tsx.
+     Operator Orange #E77630 is primary; #F1AD83 is the light-tint highlight.
+     Do not reintroduce yellow — the site has none. */
+  --foreground: #ffffff;
+  --background: #050505;
 
-  --primary: oklch(0.6526 0.2332 34.19); /* #FE3E01 */
-  --primary-foreground: oklch(0.9 0 0);
+  --primary: #E77630;
+  --primary-foreground: #ffffff;
 
-  --secondary: oklch(0.7444 0 0); /* #ACACAC */
-  --secondary-foreground: oklch(0 0 0);
+  --secondary: #0c0c0c;
+  --secondary-foreground: #ffffff;
 
-  --accent: oklch(0.8374 0.1715 83.89); /* #FEBE03 */
-  --accent-foreground: oklch(0 0 0);
+  --accent: #F1AD83;
+  --accent-foreground: #050505;
 
-  --muted: oklch(0.2 0 0); /* #202020 */
-  --muted-foreground: oklch(30.118% 0.00003 271.152);
+  --muted: #1a1a1a;
+  --muted-foreground: #888888;
 
   --card: var(--background);
   --card-foreground: var(--foreground);
@@ -77,9 +81,9 @@
 
   --destructive: oklch(0.577 0.245 27.325);
 
-  --border: oklch(0.25 0 0);
+  --border: #1f1f1f;
   --input: var(--border);
-  --ring: oklch(0.3 0 0);
+  --ring: #E77630;
 
   --chart-1: var(--primary);
   --chart-2: var(--secondary);
@@ -218,7 +222,8 @@ body {
 }
 
 .button-grad {
-  background: linear-gradient(45deg, #fe3e01 15%, #febe03);
+  /* Brand-aligned: Operator Orange → light tint. No yellow. */
+  background: linear-gradient(45deg, #E77630 15%, #F1AD83);
 }
 
 .scrollbar-hide {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { User, Server, Eye, Smartphone, CreditCard, Zap, ChevronRight, LogOut, MemoryStick, Settings2, Keyboard, Settings } from 'lucide-react'
+import { User, Server, Eye, Smartphone, CreditCard, Zap, ChevronRight, LogOut, MemoryStick, Settings2, Keyboard, Settings, Key, Shield } from 'lucide-react'
 import { useAuthStore } from '@/store/authStore'
 import {
   Dialog,
@@ -17,7 +17,7 @@ interface SettingsTab {
   label: string
   description: string
   icon: React.ReactNode
-  group: 'account' | 'preferences' | 'billing'
+  group: 'account' | 'preferences' | 'billing' | 'security'
 }
 
 interface SettingsSidebarProps {
@@ -27,20 +27,17 @@ interface SettingsSidebarProps {
 
 export const settingsTabs: SettingsTab[] = [
   { id: 'profile', label: 'Profile', description: 'Manage your account information and preferences', icon: <User size={18} />, group: 'account' },
-  // { id: 'mcp', label: 'MCP Server', description: 'Configure and manage your MCP server connections', icon: <Server size={18} />, group: 'preferences' },
-  // { id: 'accessibility', label: 'Accessibility', description: 'Customize your experience with accessibility options', icon: <Eye size={18} />, group: 'preferences' },
-  // { id: 'memory', label: 'Memory', description: 'Customize your experience with accessibility options', icon: <MemoryStick size={18} />, group: 'preferences' },
-  // { id: 'shortcuts', label: 'Shortcuts', description: 'Manage keyboard shortcuts', icon: <Keyboard size={18} />, group: 'preferences' },
-  // { id: 'devices', label: 'Devices', description: 'Manage devices accessing your account', icon: <Smartphone size={18} />, group: 'account' },
-  // { id: 'subscription', label: 'Subscription', description: 'Manage your subscription plan and billing information', icon: <CreditCard size={18} />, group: 'billing' },
+  { id: 'keys', label: 'Agentic Vault', description: 'Manage time-limited access keys that govern what agents can do', icon: <Key size={18} />, group: 'security' },
+  { id: 'permissions', label: 'Permissions', description: 'Permission rules engine fetched live from the Rust runtime', icon: <Shield size={18} />, group: 'security' },
   { id: 'usage', label: 'Usage', description: 'Monitor your resource consumption', icon: <Zap size={18} />, group: 'billing' },
-  { id: 'actions', label: 'Actions', description: 'Manage app data and perform actions', icon: <Settings2 size={18} />, group: 'preferences' }
+  { id: 'actions', label: 'Actions', description: 'Manage app data and perform actions', icon: <Settings2 size={18} />, group: 'preferences' },
 ]
 
 const groupLabels: Record<string, string> = {
   account: 'Account',
-  preferences: 'Preferences', 
-  billing: 'Billing & Usage'
+  security: 'Security',
+  preferences: 'Preferences',
+  billing: 'Billing & Usage',
 }
 
 export const SettingsSidebar: React.FC<SettingsSidebarProps> = ({ activeTab, onTabChange }) => {
@@ -60,7 +57,7 @@ export const SettingsSidebar: React.FC<SettingsSidebarProps> = ({ activeTab, onT
     return acc
   }, {} as Record<string, SettingsTab[]>)
 
-  const groupOrder = ['account', 'preferences', 'billing']
+  const groupOrder = ['account', 'security', 'preferences', 'billing']
 
   return (
     <div className="flex flex-col h-full">

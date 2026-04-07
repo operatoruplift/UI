@@ -111,9 +111,9 @@ function App() {
               {/* Voice chat route */}
               <Route path="/voicechat" element={<ProtectedRoute><Dashboard id="/voicechat" /></ProtectedRoute>} />
 
-              {/* Redirect root */}
-              <Route path="/" element={<Navigate to="/login" replace />} />
-              <Route path="*" element={<Navigate to="/login" replace />} />
+              {/* DEMO MODE: root and unknown paths land on chat, not login. */}
+              <Route path="/" element={<Navigate to="/chat" replace />} />
+              <Route path="*" element={<Navigate to="/chat" replace />} />
             </Routes>
           </Router>
         </div>
