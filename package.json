@@ -31,7 +31,7 @@
   "scripts": {
     "dev": "storybook dev -p 6006",
     "build": "vite build && npm run build:css",
-    "build:css": "tailwindcss -i ./src/styles/globals.css -o ./dist/styles.css --minify",
+    "build:css": "tailwindcss -c ./tailwind.config.ts -i ./src/styles/globals.css -o ./dist/styles.css --minify",
     "lint": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",

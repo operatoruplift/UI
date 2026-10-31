@@ -23,5 +23,12 @@
     }
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "**/*.stories.tsx", "**/*.test.tsx"]
+  "exclude": [
+    "node_modules", "dist", "**/*.stories.tsx", "**/*.test.tsx",
+    // The old Electron app (Uplift Assistant) still sits in src/, but its dependencies left
+    // package.json when the library replaced it in April 2026. Nothing in the library imports it.
+    "src/App.tsx", "src/main.ts", "src/preload.ts", "src/renderer.ts", "src/renderer.tsx",
+    "src/components/auth", "src/components/ui", "src/config", "src/lib/supabase.ts", "src/lib/timeout.ts",
+    "src/models", "src/services", "src/store", "src/types", "src/views"
+  ]
 }
